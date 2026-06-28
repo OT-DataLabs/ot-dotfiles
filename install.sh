@@ -49,7 +49,7 @@ fi
 echo -e "$YELLOW Aplicando configuraciones con GNU Stow..."
 
 # Lista aquí todas las carpetas que gestionas con Stow (ej. hypr, waybar, kitty)
-STOW_FOLDERS=("hypr" "waybar" "kitty")
+STOW_FOLDERS=("hypr" "waybar" "kitty" "wpaperd")
 
 for folder in "${STOW_FOLDERS[@]}"; do
     # Eliminar el directorio de configuración existente para evitar conflictos de Stow
