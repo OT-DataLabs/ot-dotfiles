@@ -56,15 +56,12 @@ mkdir -p "$HOME/.config"
 STOW_FOLDERS=("hypr" "waybar" "kitty" "wpaperd")
 
 for folder in "${STOW_FOLDERS[@]}"; do
-    # Si existe la carpeta física real en ~/.config (no un enlace), hacemos un backup seguro
-    if [ -d "$HOME/.config/$folder" ] && [ ! -L "$HOME/.config/$folder" ]; then
-        echo -e "$YELLOW Respaldando configuración vieja de $folder en ${folder}.bak..."
-        mv "$HOME/.config/$folder" "$HOME/.config/${folder}.bak"
-    fi
+    # Aseguramos que la subcarpeta específica exista en ~/.config
+    mkdir -p "$HOME/.config/$folder"
     
-    # IMPORTANTE: Como tus paquetes de dotfiles ya contienen la estructura interna '.config/',
-    # ejecutamos 'stow' de forma nativa para que apunte directamente a tu $HOME sin duplicar rutas.
-    stow -R -t "$HOME/.config" "$folder"
+    # Aplicar Stow direccionando explícitamente a la subcarpeta de la app
+    stow -R -t "$HOME/.config/$folder" "$folder"
+    echo -e "$GREEN Enlaces de Stow creados para $folder."
 done
 
 echo -e "$GREEN ¡Todo listo! Tu sistema se ha configurado correctamente."

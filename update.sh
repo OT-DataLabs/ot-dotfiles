@@ -26,14 +26,16 @@ mkdir -p "$HOME/.config"
 STOW_FOLDERS=("hypr" "waybar" "kitty" "wpaperd")
 
 for folder in "${STOW_FOLDERS[@]}"; do
-    # Si por algún motivo se creó una carpeta real bloqueando el enlace, la respaldamos
-    if [ -d "$HOME/.config/$folder" ] && [ ! -L "$HOME/.config/$folder" ]; then
-        echo -e "$YELLOW Respaldando carpeta física encontrada en ~/.config/$folder..."
-        mv "$HOME/.config/$folder" "$HOME/.config/${folder}.bak"
+    # Aseguramos que la subcarpeta específica exista en ~/.config
+    mkdir -p "$HOME/.config/$folder"
+
+    # Si por algún motivo se creó un archivo real bloqueando el paso, lo limpiamos
+    if [ -f "$HOME/.config/$folder" ] && [ ! -L "$HOME/.config/$folder" ]; then
+        rm -f "$HOME/.config/$folder"
     fi
     
-    # Refrescar los enlaces de Stow (el parámetro -R elimina enlaces viejos y crea los nuevos)
-    stow -R -t "$HOME/.config" "$folder"
+    # IMPORTANTE: Enlazamos los archivos dentro de su subcarpeta correspondiente
+    stow -R -t "$HOME/.config/$folder" "$folder"
 done
 echo -e "$GREEN Configuraciones locales actualizadas y enlazadas con éxito."
 
