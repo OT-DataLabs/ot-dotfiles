@@ -7,6 +7,7 @@ bluez-utils
 dolphin
 dunst
 efibootmgr
+fastfetch
 firefox
 git
 grim
