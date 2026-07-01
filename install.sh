@@ -31,37 +31,41 @@ else
     echo -e "$RED No se encontró pkglist-oficial.txt. Omitiendo..."
 fi
 
-# 4. Instalar paquetes de AUR (Asumiendo que usas 'yay')
+# 4. Instalar y/o verificar 'yay', luego instalar paquetes AUR
 if [ -f "pkglist-aur.txt" ]; then
-    # Verificar si yay está instalado
-    if command -v yay &> /dev/null; then
-        echo -e "$YELLOW Instalando paquetes de AUR con yay..."
-        yay -S --needed --noconfirm - < pkglist-aur.txt
-        echo -e "$GREEN Paquetes de AUR instalados."
-    else
-        echo -e "$RED 'yay' no está instalado. Instálalo primero para cargar los paquetes de AUR."
+    if ! command -v yay &> /dev/null; then
+        echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay..."
+        sudo pacman -S --needed --noconfirm git base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        (cd /tmp/yay && makepkg -si --noconfirm)
     fi
+
+    echo -e "$YELLOW Instalando paquetes de AUR con yay..."
+    yay -S --needed --noconfirm - < pkglist-aur.txt
+    echo -e "$GREEN Paquetes de AUR instalados."
 else
     echo -e "$RED No se encontró pkglist-aur.txt. Omitiendo..."
 fi
 
-# 5. Limpiar configuraciones por defecto y aplicar Stow
+# 5. Aplicar Stow
 echo -e "$YELLOW Aplicando configuraciones con GNU Stow..."
 
-# Lista aquí todas las carpetas que gestionas con Stow (ej. hypr, waybar, kitty)
+# Asegurar que el directorio base existe
+mkdir -p "$HOME/.config"
+
 STOW_FOLDERS=("hypr" "waybar" "kitty" "wpaperd")
 
 for folder in "${STOW_FOLDERS[@]}"; do
-    # Eliminar el directorio de configuración existente para evitar conflictos de Stow
-    # Ajusta la ruta ~/.config/ si tus dotfiles van a otro lado (como ~/)
-    if [ -d "$HOME/.config/$folder" ]; then
-        echo -e "$YELLOW Eliminando configuración por defecto de $folder..."
-        rm -rf "$HOME/.config/$folder"
+    # Si existe la carpeta física real en ~/.config (no un enlace), hacemos un backup seguro
+    if [ -d "$HOME/.config/$folder" ] && [ ! -L "$HOME/.config/$folder" ]; then
+        echo -e "$YELLOW Respaldando configuración vieja de $folder en ${folder}.bak..."
+        mv "$HOME/.config/$folder" "$HOME/.config/${folder}.bak"
     fi
     
-    # Aplicar Stow
+    # IMPORTANTE: Como tus paquetes de dotfiles ya contienen la estructura interna '.config/',
+    # ejecutamos 'stow' de forma nativa para que apunte directamente a tu $HOME sin duplicar rutas.
     stow "$folder"
     echo -e "$GREEN Enlaces de Stow creados para $folder."
 done
 
-echo -e "$GREEN ¡Todo listo! Tu sistema debería estar configurado."
+echo -e "$GREEN ¡Todo listo! Tu sistema se ha configurado correctamente."

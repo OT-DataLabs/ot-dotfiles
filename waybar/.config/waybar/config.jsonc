@@ -10,28 +10,26 @@
         "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
-        "custom/media"
+        "custom/media",
+        "hyprland/workspaces",
+        "clock",
+        "custom/wallpaper"
     ],
     "modules-center": [
-        "sway/window"
+        "sway/window",
+        "mpris"
     ],
     "modules-right": [
         "mpd",
-        "idle_inhibitor",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
-        "temperature",
-        "backlight",
         "keyboard-state",
         "sway/language",
         "battery",
-        "battery#bat2",
-        "clock",
-        "tray",
-        "custom/power"
+        "tray"
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -50,6 +48,21 @@
     //         "default": ""
     //     }
     // },
+
+
+     "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+    
+         // ESTA LÍNEA ES LA CLAVE: Forzar a que muestre el número (ID) del workspace
+         "format": "{id}", 
+    
+         // Asegúrate de que no haya un bloque "format-icons" sobreescribiendo el texto
+         "persistent-workspaces": {
+         "*": 5 // Opcional: Esto hace que siempre se muestren del 1 al 5
+      }
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -69,6 +82,24 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
+     
+        "mpris": {
+        "format": "{status_icon} {artist} - {title}",
+        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "",
+            "firefox": "",
+            "chromium": ""
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "max-length": 50, // Corta el texto si el título es demasiado largo para no romper la barra
+        "interval": 1
+    },
+
+
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -95,6 +126,12 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+    "custom/wallpaper": {
+         "format": "󰸉", 
+         "on-click": "~/.config/wpaperd/cambiar_fondo.sh",
+         "tooltip": false
+    },
+  
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {

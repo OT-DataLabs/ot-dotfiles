@@ -1,4 +1,4 @@
 [default]
-path = "/home/oscar/Imágenes/Wallpapers"
-duration = "10m"
+path = "/home/oscar/Images/Wallpapers"
+duration = "100m"
 sorting = "random"
