@@ -12,7 +12,7 @@ RED="$(tput setaf 1)[ERROR]$(tput sgr0)"
 echo -e "$YELLOW Iniciando la configuración del sistema..."
 
 # 1. Verificar si estamos en el directorio correcto
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="$HOME/ot-dotfiles"
 if [ "$PWD" != "$DOTFILES_DIR" ]; then
     echo -e "$RED Por favor, ejecuta este script desde $DOTFILES_DIR"
     exit 1
@@ -64,8 +64,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
     
     # IMPORTANTE: Como tus paquetes de dotfiles ya contienen la estructura interna '.config/',
     # ejecutamos 'stow' de forma nativa para que apunte directamente a tu $HOME sin duplicar rutas.
-    stow "$folder"
-    echo -e "$GREEN Enlaces de Stow creados para $folder."
+    stow -R -t "$HOME/.config" "$folder"
 done
 
 echo -e "$GREEN ¡Todo listo! Tu sistema se ha configurado correctamente."

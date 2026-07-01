@@ -33,7 +33,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
     fi
     
     # Refrescar los enlaces de Stow (el parámetro -R elimina enlaces viejos y crea los nuevos)
-    stow -R "$folder"
+    stow -R -t "$HOME/.config" "$folder"
 done
 echo -e "$GREEN Configuraciones locales actualizadas y enlazadas con éxito."
 
