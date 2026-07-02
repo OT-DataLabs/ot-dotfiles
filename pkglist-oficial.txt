@@ -23,6 +23,7 @@ linux-firmware
 nano
 network-manager-applet
 networkmanager
+pavucontrol
 pipewire
 pipewire-alsa
 pipewire-jack

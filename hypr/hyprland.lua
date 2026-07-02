@@ -368,3 +368,10 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- Reglas de capa para darle blur estilo Frutiger Aero a Waybar
+hl.layer_rule({
+    name  = "blur-waybar",
+    match = { namespace = "^waybar$" },
+    blur  = true,
+})
