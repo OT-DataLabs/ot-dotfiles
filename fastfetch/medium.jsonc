@@ -1,0 +1,22 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small" // Usa la versión pequeña del logo ASCII de tu distro
+  },
+  "display": {
+    "key": {
+      "width": 15 // Limita el ancho de las etiquetas
+    }
+  },
+  "modules": [
+   "title",
+    "separator",
+    "os",
+    "wm",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk"    
+  ]
+}
