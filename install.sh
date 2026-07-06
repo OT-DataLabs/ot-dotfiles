@@ -1,37 +1,29 @@
 #!/bin/bash
 
-# =====================================================================
-# Script de Instalación de Dotfiles y Paquetes (Arch Linux + Hyprland)
-# =====================================================================
-
 # Colores para los mensajes de la terminal
 GREEN="$(tput setaf 2)[OK]$(tput sgr0)"
 YELLOW="$(tput setaf 3)[INFO]$(tput sgr0)"
 RED="$(tput setaf 1)[ERROR]$(tput sgr0)"
 
-echo -e "$YELLOW Iniciando la configuración del sistema..."
+echo -e "$YELLOW Instalando los archivos de ot-dotfiles a ~/.config"
 
-# 1. Verificar si estamos en el directorio correcto
 DOTFILES_DIR="$HOME/ot-dotfiles"
 if [ "$PWD" != "$DOTFILES_DIR" ]; then
-    echo -e "$RED Por favor, ejecuta este script desde $DOTFILES_DIR"
+    echo -e "$RED la carpteta ot-dotfiles debe de estar ubicada en $DOTFILES_DIR"
     exit 1
 fi
 
-# 2. Actualizar el sistema antes de instalar nada
-echo -e "$YELLOW Actualizando los repositorios del sistema..."
+echo -e "$YELLOW Actualizando repositorios de el sistema"
 sudo pacman -Syu --noconfirm
 
-# 3. Instalar paquetes de los repositorios oficiales
 if [ -f "pkglist-oficial.txt" ]; then
-    echo -e "$YELLOW Instalando paquetes oficiales..."
+    echo -e "$YELLOW Instalando paquetes oficiales"
     sudo pacman -S --needed --noconfirm - < pkglist-oficial.txt
-    echo -e "$GREEN Paquetes oficiales instalados."
+    echo -e "$GREEN Paquetes oficiales instalados"
 else
-    echo -e "$RED No se encontró pkglist-oficial.txt. Omitiendo..."
+    echo -e "$RED No se encontro el archivo llamado pkglist-oficial.txt"
 fi
 
-# 4. Instalar y/o verificar 'yay', luego instalar paquetes AUR
 if [ -f "pkglist-aur.txt" ]; then
     if ! command -v yay &> /dev/null; then
         echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay..."
@@ -40,28 +32,53 @@ if [ -f "pkglist-aur.txt" ]; then
         (cd /tmp/yay && makepkg -si --noconfirm)
     fi
 
-    echo -e "$YELLOW Instalando paquetes de AUR con yay..."
+    echo -e "$YELLOW Instalando paquetes de aur con yay"
     yay -S --needed --noconfirm - < pkglist-aur.txt
-    echo -e "$GREEN Paquetes de AUR instalados."
+    echo -e "$GREEN Paquetes aur instalados"
 else
-    echo -e "$RED No se encontró pkglist-aur.txt. Omitiendo..."
+    echo -e "$RED No se encontro pkglist-aur.txt"
 fi
 
-# 5. Aplicar Stow
-echo -e "$YELLOW Aplicando configuraciones con GNU Stow..."
+CONFIG_DIR="$HOME/.config"
+mkdir -p "$CONFIG_DIR"
 
-# Asegurar que el directorio base existe
-mkdir -p "$HOME/.config"
+FOLDERS=()
 
-STOW_FOLDERS=("hypr" "waybar" "kitty" "wpaperd")
-
-for folder in "${STOW_FOLDERS[@]}"; do
-    # Aseguramos que la subcarpeta específica exista en ~/.config
-    mkdir -p "$HOME/.config/$folder"
-    
-    # Aplicar Stow direccionando explícitamente a la subcarpeta de la app
-    stow -R -t "$HOME/.config/$folder" "$folder"
-    echo -e "$GREEN Enlaces de Stow creados para $folder."
+for folder in "$DOTFILES_DIR"/*/; do
+    [ -d "$folder" ] || continue  
+    DIR_NAME=$(basename "$folder")
+    FOLDERS+=("$DIR_NAME")
 done
 
-echo -e "$GREEN ¡Todo listo! Tu sistema se ha configurado correctamente."
+echo -e "Carpetas dentro de $DOTFILES_DIR"
+for carpeta in "${FOLDERS[@]}"; do
+    echo -e "- $carpeta"
+done
+
+i=0
+for folder in "$DOTFILES_DIR"/*/; do
+    [ -d "$folder" ] || continue
+    NOMBRE_ACTUAL=$(basename "$folder")
+
+    if [ "${FOLDERS[i]}" == "$NOMBRE_ACTUAL" ]; then
+        echo -e "$YELLOW Copiando carpeta $folder en $CONFIG_DIR"
+
+        if [ -d "$CONFIG_DIR/${FOLDERS[i]}.bak" ]; then
+            rm -rf "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            mv "$CONFIG_DIR/${FOLDERS[i]}" "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+
+        elif [ -d "$CONFIG_DIR/${FOLDERS[i]}" ]; then
+            mv "$CONFIG_DIR/${FOLDERS[i]}" "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+
+
+        else
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+        fi
+
+        ((i++))
+    fi
+done
+
+echo -e "Instalacion terminada"

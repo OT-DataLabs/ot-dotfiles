@@ -1,2 +1,4 @@
+librewolf-bin
+oh-my-posh-bin
 yay
 yay-debug
