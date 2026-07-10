@@ -19,6 +19,7 @@
     "modules-right": [
         "mpd",
         "pulseaudio",
+        "backlight",
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -99,6 +100,14 @@
          "on-click": "~/.config/wpaperd/cambiar_fondo.sh",
          "tooltip": false
     },
+    "backlight": {
+        "device": "amdgpu_bl0", // (Asegúrate de dejar el nombre que te funcionó)
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip": false
+    },    
     "tray": {
         "spacing": 10
     },

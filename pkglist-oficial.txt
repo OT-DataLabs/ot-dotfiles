@@ -4,6 +4,7 @@ base
 base-devel
 bluez
 bluez-utils
+brightnessctl
 dolphin
 dunst
 efibootmgr
@@ -24,6 +25,8 @@ libpulse
 libva-intel-driver
 linux
 linux-firmware
+mesa-utils
+mpv
 nano
 neovim
 network-manager-applet
@@ -52,9 +55,11 @@ vulkan-intel
 vulkan-nouveau
 vulkan-radeon
 waybar
+wf-recorder
 wget
 wireplumber
 wl-clipboard
+wlr-randr
 wofi
 wpa_supplicant
 wpaperd

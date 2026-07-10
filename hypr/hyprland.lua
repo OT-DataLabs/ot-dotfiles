@@ -22,14 +22,21 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- CRT Aiwa
 hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
+    output   = "HDMI-A-1",
+    mode     = "720x480@60",
+    position = "0x0", 
+    scale    = 1,
 })
 
-
+-- Laptop lenovo 
+hl.monitor({
+    output   = "eDP-1",
+    mode     = "1366x768@60.002998",
+    position = "720x0", -- Comienza justo donde terminan los 720px de ancho del CRT
+    scale    = 1,
+})
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -81,7 +88,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- })
 
 -- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
+hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
 
