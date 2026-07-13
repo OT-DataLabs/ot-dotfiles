@@ -97,7 +97,7 @@
     },
     "custom/wallpaper": {
          "format": "󰸉", 
-         "on-click": "~/.config/wpaperd/cambiar_fondo.sh",
+         "on-click": "~/.config/swww/cambiar_fondo.sh",
          "tooltip": false
     },
     "backlight": {

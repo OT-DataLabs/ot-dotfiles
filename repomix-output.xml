@@ -1,0 +1,1200 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+bash/
+  .bashrc
+fastfetch/
+  config.jsonc
+  medium.jsonc
+  small.jsonc
+hypr/
+  hyprland.lua
+kitty/
+  kitty.conf
+ohmyposh/
+  cobalt2.omp.json
+video-tools/
+  20260708_23h15m56s_grim.ppm
+  grabar.sh
+  wl-screenrec
+waybar/
+  config.jsonc
+  style.css
+wpaperd/
+  cambiar_fondo.sh
+  config.toml
+  output.toml
+instalar.sh
+pkglist-aur.txt
+pkglist-oficial.txt
+subir.sh
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="fastfetch/config.jsonc">
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "font",
+    "cursor",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "disk",
+    "localip",
+    "battery",
+    "poweradapter",
+    "locale",
+    "break",
+    "colors"
+  ]
+}
+</file>
+
+<file path="fastfetch/medium.jsonc">
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small" // Usa la versión pequeña del logo ASCII de tu distro
+  },
+  "display": {
+    "key": {
+      "width": 15 // Limita el ancho de las etiquetas
+    }
+  },
+  "modules": [
+   "title",
+    "separator",
+    "os",
+    "wm",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk"    
+  ]
+}
+</file>
+
+<file path="fastfetch/small.jsonc">
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "none" 
+  },
+  "display": {
+    "key": {
+      "type": "icon"
+    }
+  },
+  "modules": [
+    "os",
+    "kernel",
+    "uptime",
+    "memory"
+  ]
+}
+</file>
+
+<file path="ohmyposh/cobalt2.omp.json">
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#1478DB",
+          "foreground": "#000000",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\uE0B0",
+          "options": {
+            "style": "full"
+          },
+          "style": "diamond",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#3AD900",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFC600{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+          ],
+          "foreground": "#000000",
+          "leading_diamond": "<transparent,background>\uE0B0</>",
+          "trailing_diamond": "\ue0b4",
+          "options": {
+            "fetch_status": true
+          },
+          "style": "diamond",
+          "template": " {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00> \uf046 {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 4
+}
+</file>
+
+<file path="video-tools/grabar.sh">
+#!/bin/bash
+
+OUTPUT_DIR="$HOME/Videos"
+mkdir -p "$OUTPUT_DIR"
+FILENAME="$OUTPUT_DIR/gameplay_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+
+echo "Presiona CTRL+C en esta terminal para detener."
+
+wf-recorder -c h264_vaapi -d /dev/dri/renderD128 -C default -f "$FILENAME"
+</file>
+
+<file path="video-tools/wl-screenrec">
+Not Found
+</file>
+
+<file path="wpaperd/cambiar_fondo.sh">
+#!/bin/bash
+
+# Comprobar si wpaperd se está ejecutando bajo UWSM/Systemd (Tu setup actual)
+if systemctl --user is-active --quiet wpaperd.service 2>/dev/null; then
+    # Reinicia el servicio limpiamente, lo que fuerza a elegir un nuevo wallpaper
+    systemctl --user restart wpaperd.service
+elif systemctl --user is-active --quiet uwsm-app@wpaperd.service 2>/dev/null; then
+    systemctl --user restart uwsm-app@wpaperd.service
+else
+    # Fallback: Si no está como servicio, matamos el proceso para que tu script/loop lo reviva
+    pkill wpaperd
+    # Le damos un instante y lo volvemos a lanzar en segundo plano
+    sleep 0.1
+    wpaperd &
+fi
+</file>
+
+<file path="wpaperd/output.toml">
+[default]
+path = "/home/oscar/Images/Wallpapers"
+duration = "300m"
+</file>
+
+<file path="instalar.sh">
+#!/bin/bash
+
+# Colores para los mensajes de la terminal
+GREEN="$(tput setaf 2)[OK]$(tput sgr0)"
+YELLOW="$(tput setaf 3)[INFO]$(tput sgr0)"
+RED="$(tput setaf 1)[ERROR]$(tput sgr0)"
+
+echo -e "$YELLOW Instalando los archivos de ot-dotfiles a ~/.config"
+
+DOTFILES_DIR="$HOME/ot-dotfiles"
+if [ "$PWD" != "$DOTFILES_DIR" ]; then
+    echo -e "$RED la carpteta ot-dotfiles debe de estar ubicada en $DOTFILES_DIR"
+    exit 1
+fi
+
+echo -e "$YELLOW Actualizando repositorios de el sistema"
+sudo pacman -Syu --noconfirm
+
+if [ -f "pkglist-oficial.txt" ]; then
+    echo -e "$YELLOW Instalando paquetes oficiales"
+    sudo pacman -S --needed --noconfirm - < pkglist-oficial.txt
+    echo -e "$GREEN Paquetes oficiales instalados"
+else
+    echo -e "$RED No se encontro el archivo llamado pkglist-oficial.txt"
+fi
+
+if [ -f "pkglist-aur.txt" ]; then
+    if ! command -v yay &> /dev/null; then
+        echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay..."
+        sudo pacman -S --needed --noconfirm git base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        (cd /tmp/yay && makepkg -si --noconfirm)
+    fi
+
+    echo -e "$YELLOW Instalando paquetes de aur con yay"
+    yay -S --needed --noconfirm - < pkglist-aur.txt
+    echo -e "$GREEN Paquetes aur instalados"
+else
+    echo -e "$RED No se encontro pkglist-aur.txt"
+fi
+
+CONFIG_DIR="$HOME/.config"
+mkdir -p "$CONFIG_DIR"
+
+FOLDERS=()
+
+for folder in "$DOTFILES_DIR"/*/; do
+    [ -d "$folder" ] || continue  
+    DIR_NAME=$(basename "$folder")
+    FOLDERS+=("$DIR_NAME")
+done
+
+echo -e "Carpetas dentro de $DOTFILES_DIR"
+for carpeta in "${FOLDERS[@]}"; do
+    echo -e "- $carpeta"
+done
+
+i=0
+for folder in "$DOTFILES_DIR"/*/; do
+    [ -d "$folder" ] || continue
+    NOMBRE_ACTUAL=$(basename "$folder")
+
+    if [ "${FOLDERS[i]}" == "$NOMBRE_ACTUAL" ]; then
+        echo -e "$YELLOW Copiando carpeta $folder en $CONFIG_DIR"
+
+        if [ -d "$CONFIG_DIR/${FOLDERS[i]}.bak" ]; then
+            rm -rf "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            mv "$CONFIG_DIR/${FOLDERS[i]}" "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+
+        elif [ -d "$CONFIG_DIR/${FOLDERS[i]}" ]; then
+            mv "$CONFIG_DIR/${FOLDERS[i]}" "$CONFIG_DIR/${FOLDERS[i]}.bak"
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+
+
+        else
+            cp -r "$DOTFILES_DIR/${FOLDERS[i]}" "$CONFIG_DIR"
+        fi
+
+        ((i++))
+    fi
+done
+
+echo -e "Instalacion terminada"
+</file>
+
+<file path="subir.sh">
+#!/bin/bash
+
+GREEN="$(tput setaf 2)[OK]$(tput sgr0)"
+YELLOW="$(tput setaf 3)[INFO]$(tput sgr0)"
+RED="$(tput setaf 1)[ERROR]$(tput sgr0)"
+
+echo -e "$YELLOW Subiendo los cambios locales recientes a github"
+
+DOTFILES_DIR="$HOME/ot-dotfiles"
+CONFIG_DIR="$HOME/.config"
+mkdir -p "$CONFIG_DIR"
+
+if [ "$PWD" != "$DOTFILES_DIR" ]; then
+    echo -e "$RED la carpeta ot-dotfiles debe de estar ubicada en $DOTFILES_DIR"
+    exit 1
+fi
+
+echo -e "$YELLOW Actualizando sistema"
+sudo pacman -Syu --noconfirm
+
+if [ -f "pkglist-oficial.txt" ]; then
+    echo -e "$YELLOW Actualizando paquetes oficiales"
+    pacman -Qqen > pkglist-oficial.txt 
+    echo -e "$GREEN Paquetes oficiales actualizados"
+else
+    echo -e "$RED No se encontro el archivo llamado pkglist-oficial.txt"
+fi
+
+if [ -f "pkglist-aur.txt" ]; then
+    if ! command -v yay &> /dev/null; then
+        echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay..."
+        sudo pacman -S --needed --noconfirm git base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        (cd /tmp/yay && makepkg -si --noconfirm)
+    fi
+
+    echo -e "$YELLOW Actualizando paquetes de aur"
+    pacman -Qqem > pkglist-aur.txt 
+    echo -e "$GREEN Paquetes aur actualizados"
+else
+    echo -e "$RED No se encontro pkglist-aur.txt"
+fi
+
+echo -e "$YELLOW Sincronizando configuraciones desde $CONFIG_DIR hacia $DOTFILES_DIR"
+
+for folder in "$DOTFILES_DIR"/*/; do
+    [ -d "$folder" ] || continue
+    NOMBRE_ACTUAL=$(basename "$folder")
+
+    if [[ "$NOMBRE_ACTUAL" == *.bak ]]; then
+        echo -e "$YELLOW Carpeta .bak ignorada: $NOMBRE_ACTUAL"
+        continue
+    fi
+
+    if [ -d "$CONFIG_DIR/$NOMBRE_ACTUAL" ]; then
+        echo -e "$YELLOW Copiando $NOMBRE_ACTUAL a $DOTFILES_DIR"
+        rm -rf "$DOTFILES_DIR/$NOMBRE_ACTUAL"
+        cp -r "$CONFIG_DIR/$NOMBRE_ACTUAL" "$DOTFILES_DIR/"
+    else
+        echo -e "$RED Advertencia: La carpeta $NOMBRE_ACTUAL no existe en $CONFIG_DIR"
+    fi
+done
+
+echo -e "$YELLOW Registrando cambios en Git..."
+git add .
+git commit -m "Actualización automática de dotfiles"
+git push origin main
+
+echo -e "$GREEN ¡Proceso terminado!"
+</file>
+
+<file path="bash/.bashrc">
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
+export PATH=$PATH:/home/oscar/.local/bin
+eval "$(oh-my-posh init bash --config "$HOME/.config/ohmyposh/cobalt2.omp.json")"
+
+fastfetch_responsive() {
+    # Obtenemos el ancho actual de la terminal en columnas
+    local width=$(tput cols)
+
+    # Si la terminal tiene menos de 80 columnas (es pequeña)
+    if [ "$width" -lt 80 ]; then
+        fastfetch -c ~/.config/fastfetch/small.jsonc
+    # Si la terminal tiene entre 80 y 110 columnas (mediana)
+    elif [ "$width" -lt 110 ]; then
+        fastfetch -c ~/.config/fastfetch/medium.jsonc
+    # Si la terminal es grande
+    else
+        fastfetch -c ~/.config/fastfetch/config.jsonc
+    fi
+}
+
+# Alias para que al escribir 'fastfetch' o usarlo en el inicio, se ejecute la función
+alias fastfetch='fastfetch_responsive'
+</file>
+
+<file path="kitty/kitty.conf">
+font_family      RobotoMono Nerd Font Mono
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+background_opacity 0.85
+</file>
+
+<file path="wpaperd/config.toml">
+[default]
+path = "/home/oscar/Images/Wallpapers"
+duration = "300m"
+sorting = "random"
+</file>
+
+<file path="hypr/hyprland.lua">
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- AUTOGENERATED HYPRLAND CONFIG.                        --
+-- EDIT THIS CONFIG ACCORDING TO THE WIKI INSTRUCTIONS.  --
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+
+-- This is an example Hyprland Lua config file.
+-- Refer to the wiki for more information.
+-- https://wiki.hypr.land/Configuring/Start/
+
+-- Please note not all available settings / options are set here.
+-- For a full list, see the wiki
+
+-- You can (and should!!) split this configuration into multiple files
+-- Create your files separately and then require them like this:
+-- require("myColors")
+
+
+------------------
+---- MONITORS ----
+------------------
+
+-- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- CRT Aiwa
+hl.monitor({
+    output   = "HDMI-A-1",
+    mode     = "720x480@60",
+    position = "0x0", 
+    scale    = 1,
+})
+
+-- Laptop lenovo 
+hl.monitor({
+    output   = "eDP-1",
+    mode     = "1366x768@60.002998",
+    position = "720x0", -- Comienza justo donde terminan los 720px de ancho del CRT
+    scale    = 1,
+})
+---------------------
+---- MY PROGRAMS ----
+---------------------
+
+-- Set programs that you use
+local terminal    = "kitty"
+local fileManager = "dolphin"
+local menu        = "rofi -show drun"
+
+
+-------------------
+---- AUTOSTART ----
+-------------------
+
+-- See https://wiki.hypr.land/Configuring/Basics/Autostart/
+
+-- Autostart necessary processes (like notifications daemons, status bars, etc.)
+-- Or execute your favorite apps at launch like this:
+--
+hl.on("hyprland.start", function () 
+      hl.exec_cmd("waybar")
+      hl.exec_cmd("wpaperd")   
+  
+end)
+
+
+-------------------------------
+---- ENVIRONMENT VARIABLES ----
+-------------------------------
+
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
+
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_SIZE", "24")
+
+
+-----------------------
+----- PERMISSIONS -----
+-----------------------
+
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
+-- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
+-- for security reasons
+
+-- hl.config({
+--   ecosystem = {
+--     enforce_permissions = true,
+--   },
+-- })
+
+-- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
+hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
+-- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
+
+
+-----------------------
+---- LOOK AND FEEL ----
+-----------------------
+
+-- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+hl.config({
+    general = {
+        gaps_in  = 5,
+        gaps_out = 20,
+
+        border_size = 2,
+
+        col = {
+            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
+            inactive_border = "rgba(595959aa)",
+        },
+
+        -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = false,
+
+        -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
+        allow_tearing = false,
+
+        layout = "dwindle",
+    },
+
+    decoration = {
+        rounding       = 10,
+        rounding_power = 2,
+
+        -- Change transparency of focused and unfocused windows
+        active_opacity   = 1.0,
+        inactive_opacity = 1.0,
+
+        shadow = {
+            enabled      = true,
+            range        = 4,
+            render_power = 3,
+            color        = 0xee1a1a1a,
+        },
+
+        blur = {
+            enabled   = true,
+            size      = 3,
+            passes    = 1,
+            vibrancy  = 0.1696,
+        },
+    },
+
+    animations = {
+        enabled = true,
+    },
+})
+
+-- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
+hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
+hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
+hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
+hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
+hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
+
+-- Default springs
+hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+
+hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
+hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
+hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
+hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.49, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
+hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
+hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
+hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
+hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
+
+-- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
+-- "Smart gaps" / "No gaps when only"
+-- uncomment all if you wish to use that.
+-- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+-- hl.window_rule({
+--     name  = "no-gaps-wtv1",
+--     match = { float = false, workspace = "w[tv1]" },
+--     border_size = 0,
+--     rounding    = 0,
+-- })
+-- hl.window_rule({
+--     name  = "no-gaps-f1",
+--     match = { float = false, workspace = "f[1]" },
+--     border_size = 0,
+--     rounding    = 0,
+-- })
+
+-- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
+hl.config({
+    dwindle = {
+        preserve_split = true, -- You probably want this
+    },
+})
+
+-- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
+hl.config({
+    master = {
+        new_status = "master",
+    },
+})
+
+-- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
+hl.config({
+    scrolling = {
+        fullscreen_on_one_column = true,
+    },
+})
+
+----------------
+----  MISC  ----
+----------------
+
+hl.config({
+    misc = {
+        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+    },
+})
+
+
+---------------
+---- INPUT ----
+---------------
+
+hl.config({
+    input = {
+        kb_layout  = "us",
+        kb_variant = "",
+        kb_model   = "",
+        kb_options = "",
+        kb_rules   = "",
+
+        follow_mouse = 1,
+
+        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+
+        touchpad = {
+            natural_scroll = false,
+        },
+    },
+})
+
+hl.gesture({
+    fingers = 3,
+    direction = "horizontal",
+    action = "workspace"
+})
+
+-- Example per-device config
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
+hl.device({
+    name        = "epic-mouse-v1",
+    sensitivity = -0.5,
+})
+
+
+---------------------
+---- KEYBINDINGS ----
+---------------------
+
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+
+-- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
+-- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+
+-- Move focus with mainMod + arrow keys
+hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+
+-- 1. Capturar una REGION seleccionada y copiarla al portapapeles
+hl.bind("PRINT", hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy]]), { description = "Copiar región al portapapeles" })
+
+-- 2. Capturar PANTALLA COMPLETA y copiarla al portapapeles
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd([[grim - | wl-copy]]), { description = "Copiar pantalla completa al portapapeles" })
+
+-- Switch workspaces with mainMod + [0-9]
+-- Move active window to a workspace with mainMod + SHIFT + [0-9]
+for i = 1, 10 do
+    local key = i % 10 -- 10 maps to key 0
+    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+end
+
+-- Example special workspace (scratchpad)
+hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+
+-- Scroll through existing workspaces with mainMod + scroll
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+-- Move/resize windows with mainMod + LMB/RMB and dragging
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Laptop multimedia keys for volume and LCD brightness
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+
+-- Requires playerctl
+hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+
+--------------------------------
+---- WINDOWS AND WORKSPACES ----
+--------------------------------
+
+-- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+-- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
+
+-- Example window rules that are useful
+
+local suppressMaximizeRule = hl.window_rule({
+    -- Ignore maximize requests from all apps. You'll probably like this.
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
+
+    suppress_event = "maximize",
+})
+-- suppressMaximizeRule:set_enabled(false)
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true,
+})
+
+-- Layer rules also return a handle.
+-- local overlayLayerRule = hl.layer_rule({
+--     name  = "no-anim-overlay",
+--     match = { namespace = "^my-overlay$" },
+--     no_anim = true,
+-- })
+-- overlayLayerRule:set_enabled(false)
+
+-- Hyprland-run windowrule
+hl.window_rule({
+    name  = "move-hyprland-run",
+    match = { class = "hyprland-run" },
+
+    move  = "20 monitor_h-120",
+    float = true,
+})
+
+-- Reglas de capa para darle blur estilo Frutiger Aero a Waybar
+hl.layer_rule({
+    name  = "blur-waybar",
+    match = { namespace = "^waybar$" },
+    blur  = true,
+})
+</file>
+
+<file path="waybar/style.css">
+* {
+    border: none;
+    border-radius: 0;
+    /* Fuente sans-serif limpia para asemejarse a Segoe UI */
+    font-family: "Ubuntu", "Segoe UI", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    /* Gradiente característico de Windows Vista (Negro/Gris translúcido con reflejo cristalino) */
+    background: linear-gradient(
+        to bottom,
+        rgba(20, 30, 35, 0.55) 0%,
+        rgba(10, 15, 18, 0.70) 50%,
+        rgba(2, 5, 5, 0.85) 52%,
+        rgba(15, 20, 25, 0.75) 100%
+    ); 
+    
+    color: #FFFFFF;
+    /* Bisel superior brillante clásico de Windows Aero */
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Efecto de botones de la barra de tareas de Windows Vista */
+#workspaces button {
+    padding: 0 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: normal;
+    margin: 4px 2px;
+    border-radius: 3px;
+    /* Borde sutil transparente */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.1));
+    transition: all 0.2s ease-in-out;
+}
+
+/* Aplicación/Workspace activa (Resaltado celeste Frutiger) */
+#workspaces button.active {
+    color: #ffffff;
+    background: linear-gradient(
+        to bottom,
+        rgba(100, 200, 255, 0.45) 0%,
+        rgba(30, 140, 230, 0.25) 50%,
+        rgba(0, 80, 180, 0.5) 52%,
+        rgba(50, 160, 240, 0.4) 100%
+    );
+    border: 1px solid rgba(120, 210, 255, 0.6);
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.4);
+}
+
+/* Hover al pasar el mouse por encima */
+#workspaces button:hover {
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Módulos globales del sistema (Área de notificación / System Tray) */
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#backlight, 
+#cpu,
+#memory,
+#keyboard-state,
+#tray {
+    padding: 0 8px;
+    color: #e0f2fe;
+}
+
+/* Reloj específico al estilo de la bandeja de Vista */
+#clock {
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+
+
+
+
+#custom-wallpaper {
+    color: #38bdf8;
+    padding: 0 10px;
+}
+
+#custom-wallpaper:hover {
+    color: #0ea5e9;
+    text-shadow: 0 0 6px rgba(14, 165, 233, 0.8);
+}
+</file>
+
+<file path="pkglist-aur.txt">
+librewolf-bin
+oh-my-posh-bin
+yay
+yay-debug
+</file>
+
+<file path="waybar/config.jsonc">
+// -*- mode: jsonc -*-
+{
+    "layer": "top", 
+    "position": "bottom", // Posición abajo al estilo Windows
+    "height": 40,        // Un poco más alta para emular el grosor de Vista
+    "spacing": 4, 
+    
+    "modules-left": [
+        "hyprland/workspaces",
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
+        "custom/media"
+    ],
+    "modules-center": [
+        "sway/window",
+        "mpris"
+    ],
+    "modules-right": [
+        "mpd",
+        "pulseaudio",
+        "backlight",
+        "network",
+        "power-profiles-daemon",
+        "cpu",
+        "memory",
+        "keyboard-state",
+        "sway/language",
+        "battery",
+        "tray",
+        "clock",            // El reloj va al extremo derecho en Windows
+        "custom/wallpaper"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "format": "{id}", 
+        "persistent-workspaces": {
+            "*": 5 
+        }
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "mpris": {
+        "format": "{status_icon} {artist} - {title}",
+        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "",
+            "firefox": "",
+            "chromium": ""
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "max-length": 50, 
+        "interval": 1
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": { "on": " " },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": { "on": " " },
+        "single-icons": { "on": "1 " },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "custom/wallpaper": {
+         "format": "󰸉", 
+         "on-click": "~/.config/wpaperd/cambiar_fondo.sh",
+         "tooltip": false
+    },
+    "backlight": {
+        "device": "amdgpu_bl0", // (Asegúrate de dejar el nombre que te funcionó)
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip": false
+    },    
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        // Formato de dos líneas al estilo Windows Vista/7
+        "format": "{:%I:%M %p\n%d/%m/%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+ 
+
+    "network": {
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
+</file>
+
+<file path="pkglist-oficial.txt">
+amd-ucode
+awww
+base
+base-devel
+bluez
+bluez-utils
+brightnessctl
+dolphin
+dunst
+efibootmgr
+fastfetch
+firefox
+git
+github-cli
+grim
+grub
+gst-plugin-pipewire
+htop
+hyprland
+intel-media-driver
+intel-ucode
+kitty
+libnotify
+libpulse
+libva-intel-driver
+linux
+linux-firmware
+mesa-utils
+mpv
+nano
+neovim
+network-manager-applet
+networkmanager
+pavucontrol
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+polkit-kde-agent
+qt5-wayland
+qt6-wayland
+rofi
+sddm
+slurp
+smartmontools
+sof-firmware
+stow
+sudo
+swaync
+ttf-jetbrains-mono-nerd
+unzip
+uwsm
+vim
+vulkan-intel
+vulkan-nouveau
+vulkan-radeon
+waybar
+wf-recorder
+wget
+wireplumber
+wl-clipboard
+wlr-randr
+wofi
+wpa_supplicant
+wpaperd
+xdg-desktop-portal-hyprland
+xdg-utils
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-nouveau
+zram-generator
+</file>
+
+</files>

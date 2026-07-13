@@ -1,4 +1,5 @@
 librewolf-bin
 oh-my-posh-bin
+repomix
 yay
 yay-debug
