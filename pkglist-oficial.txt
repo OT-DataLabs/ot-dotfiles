@@ -31,6 +31,8 @@ nano
 neovim
 network-manager-applet
 networkmanager
+ntfs-3g
+os-prober
 pavucontrol
 pipewire
 pipewire-alsa
