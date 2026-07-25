@@ -7,6 +7,7 @@ bluez-utils
 brightnessctl
 dolphin
 dunst
+easyeffects
 efibootmgr
 fastfetch
 firefox
@@ -19,19 +20,24 @@ htop
 hyprland
 intel-media-driver
 intel-ucode
+kdenlive
 kitty
 libnotify
 libpulse
 libva-intel-driver
 linux
 linux-firmware
+man-db
+man-pages
 mesa-utils
 mpv
 nano
 neovim
 network-manager-applet
 networkmanager
+nsxiv
 ntfs-3g
+obs-studio
 os-prober
 pavucontrol
 pipewire
@@ -39,6 +45,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 polkit-kde-agent
+qpwgraph
 qt5-wayland
 qt6-wayland
 rofi
@@ -73,4 +80,5 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-poppler
+zip
 zram-generator
