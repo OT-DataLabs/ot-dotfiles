@@ -7,9 +7,6 @@
     
     "modules-left": [
         "hyprland/workspaces",
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad",
         "custom/media"
     ],
     "modules-center": [
@@ -36,11 +33,13 @@
         "disable-scroll": true,
         "all-outputs": true,
         "active-only": false,
-        "format": "{id}", 
+        "format": "{id}",
+        "on-click": "activate",
         "persistent-workspaces": {
             "*": 5 
         }
     },
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
