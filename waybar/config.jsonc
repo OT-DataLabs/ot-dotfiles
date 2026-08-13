@@ -19,8 +19,8 @@
     "modules-right": [
         "mpd",
         "pulseaudio",
-        "backlight",
-        "network",
+        // "backlight",
+        // "network",
         "power-profiles-daemon",
         "cpu",
         "memory",

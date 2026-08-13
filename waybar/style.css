@@ -64,9 +64,9 @@ window#waybar {
 /* Módulos globales del sistema (Área de notificación / System Tray) */
 #clock,
 #battery,
-#network,
+/* #network,*/
 #pulseaudio,
-#backlight, 
+/* #backlight,*/ 
 #cpu,
 #memory,
 #keyboard-state,
