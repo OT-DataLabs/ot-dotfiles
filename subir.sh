@@ -10,36 +10,25 @@ DOTFILES_DIR="$HOME/ot-dotfiles"
 CONFIG_DIR="$HOME/.config"
 mkdir -p "$CONFIG_DIR"
 
-if [ "$PWD" != "$DOTFILES_DIR" ]; then
-    echo -e "$RED la carpeta ot-dotfiles debe de estar ubicada en $DOTFILES_DIR"
-    exit 1
-fi
+cd "$DOTFILES_DIR" || { echo -e "$RED No se pudo acceder a $DOTFILES_DIR"; exit 1; }
 
 echo -e "$YELLOW Actualizando sistema"
 sudo pacman -Syu --noconfirm
 
-if [ -f "pkglist-oficial.txt" ]; then
-    echo -e "$YELLOW Actualizando paquetes oficiales"
-    pacman -Qqen > pkglist-oficial.txt 
-    echo -e "$GREEN Paquetes oficiales actualizados"
-else
-    echo -e "$RED No se encontro el archivo llamado pkglist-oficial.txt"
+echo -e "$YELLOW Actualizando paquetes oficiales"
+pacman -Qqen > pkglist-oficial.txt 
+echo -e "$GREEN Paquetes oficiales actualizados"
+
+if ! command -v yay &> /dev/null; then
+    echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay"
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    (cd /tmp/yay && makepkg -si --noconfirm)
 fi
 
-if [ -f "pkglist-aur.txt" ]; then
-    if ! command -v yay &> /dev/null; then
-        echo -e "$YELLOW 'yay' no detectado. Instalando bootstrap de yay..."
-        sudo pacman -S --needed --noconfirm git base-devel
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        (cd /tmp/yay && makepkg -si --noconfirm)
-    fi
-
-    echo -e "$YELLOW Actualizando paquetes de aur"
-    pacman -Qqem > pkglist-aur.txt 
-    echo -e "$GREEN Paquetes aur actualizados"
-else
-    echo -e "$RED No se encontro pkglist-aur.txt"
-fi
+echo -e "$YELLOW Actualizando paquetes de aur"
+pacman -Qqem > pkglist-aur.txt 
+echo -e "$GREEN Paquetes aur actualizados"
 
 echo -e "$YELLOW Sincronizando configuraciones desde $CONFIG_DIR hacia $DOTFILES_DIR"
 
@@ -61,9 +50,9 @@ for folder in "$DOTFILES_DIR"/*/; do
     fi
 done
 
-echo -e "$YELLOW Registrando cambios en Git..."
+echo -e "$YELLOW Registrando cambios en Git"
 git add .
-git commit -m "Actualización automática de dotfiles"
+git commit -m "Actualización automatica de dotfiles"
 git push origin main
 
-echo -e "$GREEN ¡Proceso terminado!"
+echo -e "$GREEN Proceso terminado"
