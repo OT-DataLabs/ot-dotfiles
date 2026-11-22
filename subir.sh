@@ -30,14 +30,14 @@ echo -e "$YELLOW Actualizando paquetes de aur"
 pacman -Qqem > pkglist-aur.txt 
 echo -e "$GREEN Paquetes aur actualizados"
 
+
 echo -e "$YELLOW Sincronizando configuraciones desde $CONFIG_DIR hacia $DOTFILES_DIR"
 
 for folder in "$DOTFILES_DIR"/*/; do
     [ -d "$folder" ] || continue
     NOMBRE_ACTUAL=$(basename "$folder")
 
-    if [[ "$NOMBRE_ACTUAL" == *.bak ]]; then
-        echo -e "$YELLOW Carpeta .bak ignorada: $NOMBRE_ACTUAL"
+    if [[ "$NOMBRE_ACTUAL" == *.bak || "$NOMBRE_ACTUAL" == "bash" ]]; then
         continue
     fi
 
@@ -49,6 +49,16 @@ for folder in "$DOTFILES_DIR"/*/; do
         echo -e "$RED Advertencia: La carpeta $NOMBRE_ACTUAL no existe en $CONFIG_DIR"
     fi
 done
+
+if [ -f "$HOME/.bashrc" ]; then
+    echo -e "$YELLOW Copiando .bashrc a $DOTFILES_DIR/bash/"
+    mkdir -p "$DOTFILES_DIR/bash"
+    cp "$HOME/.bashrc" "$DOTFILES_DIR/bash/.bashrc"
+else
+    echo -e "$RED Advertencia: No se encontró $HOME/.bashrc"
+fi
+
+
 
 echo -e "$YELLOW Registrando cambios en Git"
 git add .

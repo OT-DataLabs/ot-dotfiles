@@ -41,11 +41,13 @@ mkdir -p "$CONFIG_DIR"
 
 echo -e "Carpetas dentro de $DOTFILES_DIR"
 
+
+
 for folder in "$DOTFILES_DIR"/*/; do
     [ -d "$folder" ] || continue  
     DIR_NAME=$(basename "$folder")
     
-    if [[ "$DIR_NAME" == ".git" ]]; then continue; fi
+    if [[ "$DIR_NAME" == ".git" || "$DIR_NAME" == "bash" ]]; then continue; fi
 
     echo -e "- $DIR_NAME"
     echo -e "$YELLOW Copiando carpeta $DIR_NAME en $CONFIG_DIR"
@@ -57,5 +59,15 @@ for folder in "$DOTFILES_DIR"/*/; do
 
     cp -r "$folder" "$CONFIG_DIR"
 done
+
+if [ -f "$DOTFILES_DIR/bash/.bashrc" ]; then
+    echo -e "$YELLOW Instalando .bashrc en $HOME"
+    if [ -f "$HOME/.bashrc" ]; then
+        cp "$HOME/.bashrc" "$HOME/.bashrc.bak"
+    fi
+    cp "$DOTFILES_DIR/bash/.bashrc" "$HOME/.bashrc"
+fi
+
+
 
 echo -e "$GREEN Instalacion terminada"
