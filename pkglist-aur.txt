@@ -1,6 +1,7 @@
 librewolf-bin
 obs-vkcapture
 oh-my-posh-bin
+onlyoffice-bin
 repomix
 yay
 yay-debug

@@ -1,3 +1,5 @@
+7zip
+aircrack-ng
 amd-ucode
 awww
 base
@@ -21,6 +23,7 @@ htop
 hyprland
 intel-media-driver
 intel-ucode
+iw
 kdenlive
 kitty
 libnotify
@@ -36,6 +39,7 @@ nano
 neovim
 network-manager-applet
 networkmanager
+noto-fonts-emoji
 nsxiv
 ntfs-3g
 obs-studio
@@ -59,7 +63,9 @@ steam
 stow
 sudo
 swaync
+tailscale
 ttf-jetbrains-mono-nerd
+ttf-meslo-nerd
 unzip
 uwsm
 vim
@@ -69,6 +75,7 @@ vulkan-radeon
 waybar
 wf-recorder
 wget
+wine
 wireplumber
 wl-clipboard
 wlr-randr
